@@ -1,25 +1,20 @@
 ---
 layout: about
-title: about
+title: Home
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href='https://frib.msu.edu'>Facility for Rare Isotope Beams</a>, <a href='https://www.msu.edu'>Michigan State University</a>.
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: PRAB_24_041002_FMA_CC.png
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Selected Figure from study:<a href='https://journals.aps.org/prab/abstract/10.1103/PhysRevAccelBeams.24.041002'>Dynamics of Crab Crossing</a> </p>
+    
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
-
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+My research group focuses on in-depth understandings of accelerator physics. Our goal is to find elegant approaches to achieve a high-intensity and high-quality beam of charged particles in an accelerator. Such a beam provides a powerful tool in various fields, such as high energy/nuclear physics, condensed matter physics, biology/chemistry, medical and industrial applications.  The main approach of my group is the theoretical analysis and corresponding computer simulation.

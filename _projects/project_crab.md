@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+title: Dynamics in Crab Crossing
+description: Explore the challenges of crab crosing in colliders
+img: assets/img/project_crab.jpg
 importance: 2
-category: work
+category: Dynamics
 giscus_comments: true
 ---
 

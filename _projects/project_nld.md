@@ -1,11 +1,11 @@
 ---
 layout: page
-title: project 1
-description: with background image
-img: assets/img/12.jpg
+title: NL Dynamics w. Diffeomorphism 
+description: Explore nonlinear dynamics properties without tracking
+img: assets/img/project_nld.png
 importance: 1
-category: work
-related_publications: true
+category: Dynamics
+related_publications: false
 ---
 
 Every project has a beautiful feature showcase page.
