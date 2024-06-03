@@ -17,4 +17,5 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-My research group focuses on in-depth understandings of accelerator physics. Our goal is to find elegant approaches to achieve a high-intensity and high-quality beam of charged particles in an accelerator. Such a beam provides a powerful tool in various fields, such as high energy/nuclear physics, condensed matter physics, biology/chemistry, medical and industrial applications.  The main approach of my group is the theoretical analysis and corresponding computer simulation.
+My research group focuses on in-depth understandings of accelerator physics. Our goal is to find elegant approaches to achieve a high-intensity and/or high-quality beam of charged particles in an accelerator. Such a beam provides a powerful tool in various fields, such as colliders or fix target accelerators for high energy/nuclear physics research, acclerator based light source for condensed matter physics, biology and chemistry, and medical or industrial applications.  The main approach of my group is the theoretical analysis,the corresponding computer simulation and data driven approaches.
+
