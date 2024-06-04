@@ -5,7 +5,7 @@ permalink: /projects/
 description: A growing collection of the projects. 
 nav: true
 nav_order: 2
-display_categories: [Dynamics, work]
+display_categories: [Dynamics, Computation, DataDriven]
 horizontal: false
 ---
 
