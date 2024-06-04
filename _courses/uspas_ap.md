@@ -8,7 +8,7 @@ category: USPAS
 related_publications: false
 ---
 
-The [current session of USPAS (summer 2024)](https://uspas.fnal.gov/programs/2024/rohnertpark/index.shtml) is scheduled at Rohnert Park, California.    
+[Current session of USPAS (summer 2024)](https://uspas.fnal.gov/programs/2024/rohnertpark/index.shtml) is scheduled at Rohnert Park, California.    
 
 MSU team 
 - Prof. Steve Lund
