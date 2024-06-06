@@ -1,10 +1,10 @@
 ---
 layout: page
-title: USPAS AP
-description: Accelerator Physics
+title: Accelerator Physics
+description: The graduate-level accelerator physics course in 2-week USPAS sessions.
 img: 
 importance: 1
-category: USPAS
+category: US Particle Accelerator School
 related_publications: false
 ---
 

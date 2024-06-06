@@ -5,8 +5,8 @@ permalink: /courses/
 description: Courses at MSU and USPAS.
 nav: true
 nav_order: 7
-display_categories: [MSU, USPAS]
-horizontal: false
+display_categories: [Michigan State University, US Particle Accelerator School]
+horizontal: true
 ---
 
 <!-- pages/teaching.md -->
@@ -23,7 +23,7 @@ horizontal: false
   {% if page.horizontal %}
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
-    {% for course in sorted_courses %}
+    {% for project in sorted_courses %}
       {% include projects_horizontal.liquid %}
     {% endfor %}
     </div>

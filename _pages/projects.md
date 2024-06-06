@@ -2,10 +2,10 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: A growing collection of the projects. 
+description: A growing collection of research projects. 
 nav: true
 nav_order: 2
-display_categories: [Dynamics, Computation, DataDriven]
+display_categories: [Dynamics, Computation, Data Driven Modeling]
 horizontal: false
 ---
 
