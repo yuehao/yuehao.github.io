@@ -188,6 +188,9 @@ collections:
   courses:
     output: true
     permalink: /courses/:path/
+  people:
+    output: true
+    permalink: /people/:path/
 
 announcements:
   enabled: true
