@@ -67,3 +67,17 @@ horizontal: true
   {% endif %}
 {% endif %}
 </div>
+
+<div class="projects">
+<h2 class="category"> Undergraduate Researchers and Interns </h2>
+</div>
+
+      
+* [Joshua Keeney](https://www.linkedin.com/in/josh-keeney-89576a258/), MSU (2024 Summer ASET Internship)
+* [Kyla Hotton](https://www.linkedin.com/in/kyla-hotton-668100221/), MSU (2023 Summer ASET Internship) 
+* [Jonathan Kho](https://www.linkedin.com/in/jonathan-kho-5945361b5/), MSU (2022 Summer ASET Internship) 
+* [Shane Blade](https://www.linkedin.com/in/shane-blade-7a1a6322b/), Clemson U. (REU program 2021)
+* [Jack Fenelon](https://www.linkedin.com/in/jack-fenelon-44b44b1b4/), MSU (2021 Summer ASET Internship) 
+* [Julian Olejnik](https://www.linkedin.com/in/julian-olejnik-6603a5214/), MSU (2020 Summer ASET Internship)
+    
+ 
