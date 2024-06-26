@@ -21,13 +21,13 @@ will teach graudate level accelerator physics course.  The official website can 
 
 ---
 
-Lecture notes have been developed to allow interactive learning using Jupyter notebook.  One can download and try with
+Lecture notes have been developed in Jupyter Book format which allow interactive learning using Jupyter notebook.  The book can be opened using the following link:
 
 ```
-git clone git@github.com:yuehao/AP_course_materials.git
+https://msu-beam-dynamics.github.io/AP_enotes/intro.html
 ```
 
----
+<!---
 
 These lecture notes will cover:
 
@@ -54,5 +54,5 @@ These lecture notes will cover:
 
     * [Symplecticity](https://people.nscl.msu.edu/~haoy/teaching/AP_course_materials/symplecticity/symplecticity.html)
     
-
+-->
 
