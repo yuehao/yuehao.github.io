@@ -21,10 +21,10 @@ will teach graudate level accelerator physics course.  The official website can 
 
 ---
 
-Lecture notes have been developed in Jupyter Book format which allow interactive learning using Jupyter notebook.  The book can be opened using the following link:
+[Lecture notes](https://msu-beam-dynamics.github.io/AP_enotes/intro.html) have been developed in Jupyter Book format which allow interactive learning using Jupyter notebook.  The source code of the notes can be retrieved as:
 
 ```
-https://msu-beam-dynamics.github.io/AP_enotes/intro.html
+git clone git@github.com:MSU-Beam-Dynamics/AP_enotes.git
 ```
 
 
