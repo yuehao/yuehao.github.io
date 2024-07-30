@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2024-06-02 08:00:00-0400
+date: 2024-07-28 08:00:00-0400
 inline: true
 related_posts: false
 ---
 
-Website is being migrated to new platform, with support of Markdown emoji! :sparkles: :smile:
+Returned from 2024 USPAS summer session.  Yue, Anthony and Helena participated in the accelerator physics graduate course.
