@@ -2,96 +2,92 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+      value: Yue Hao
+    - name: Title
+      value: Professor of Physics
+    - name: URL
+      value: https://yuehao.github.io
+    - name: Address
+      value: Rm 5301, 640 S. Shaw Lane, East Lansing, MI 48824
+    - name: email
+      value: haoyue (at) msu (dot) edu
+
+- title: Research Interests
+  type: nested_list
+  contents:
+    - title: Nonlinear Beam Dynamics.
+      items:
+        - Nonlinear resonance in ring, KAM Theorem, Topology of Phase Space, Dynamic Aperture Optimization, 
+        - Modeling of Beam-Beam Interaction, Space Charge Effects and crab crossing scheme in colliders
+    - title: High performance computation for Accelerator Science.
+      items:
+        - Auto Differentiation in Beam Simulation
+        - High Performance Computing of Colletive Effects
+    - title: Machine Learning Applications in Accelerator Science.
+      items:
+        - Machine learning for Beam Dynamics, Koopman operator
+        - Machine learning based control algorithms for accelerator
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Ph.D., Accelerator Physics
+      institution: Indiana University, Bloomington, Indiana, US
+      year: 2008
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+        - Advisor - Prof. Shyh-Yuan Lee
+        - Thesis - "Beam-Beam Interaction Study in ERL Based eRHIC"
+    - title: Master of Physics
+      institution: Indiana University, Bloomington, Indiana, US
+      year: 2005
+    - title: Bachelor of Science
+      institution: University of Science and Technology of China, Hefei, China
+      year: 2003
 
-- title: Experience
+
+- title: Working Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+    - title: Professor of Physics
+      institution: Facility for Rare Isotope Beams, Michigan State University
+      year: 2022 - present
+      
+    - title: Associate Professor of Physics
+      institution: Facility for Rare Isotope Beams, Michigan State University
+      year: 2016-2022
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
+    - title: Assistant Physicist / Associate Physicist / Physicist
+      institution: Collider-Accelerator Department, Brookhaven National Laboratory
+      year: 2010 - 2016
 
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Adjunct Professor
+      institution: Department of Physics and Astronomy, Stony Brook University
+      year: 2010 - 2016
       description:
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Postdoctoral Research Associate
+      institution: Collider-Accelerator Department, Brookhaven National Laboratory
+      year: 2008 - 2010
+      description:
+        - Advisor - Dr. Vladimir Litvinenko
+      
 
-- title: Open Source Projects
+- title: Synergy Activities
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - year: 2027
+      items:
+        - Local Organizing Committee Chair, the 18th International Particle Accelerator Conference (IPAC'27)
+       
+    - year: 2018 - present
+      items:
+        - Member of USPAS Directors' Advisory Council
+    
+    - year: Ongoing
+      items:
+        - Reviewer of Physical Review Journals, Nuclear Instruments and Methods, and Nature Physics
+        - Reviewer of US Department of Energy, Office of Science
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+
