@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const p = entry.data;
+
+const categoryColors: Record<string, string> = {
+  'Dynamics': 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+  'Computation': 'bg-green-500/10 text-green-600 dark:text-green-400',
+  'Data Driven Modeling': 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
+  'default': 'bg-gray-500/10 text-gray-600 dark:text-gray-400',
+};
+const categoryColor = categoryColors[p.category] ?? categoryColors['default'];
+---
+
+<BaseLayout title={p.title} description={p.description}>
+  <article class="py-12">
+    <div class={`mx-auto px-4 sm:px-6 lg:px-8 ${p.image ? 'max-w-6xl' : 'max-w-4xl'}`}>
+
+      <!-- Back link -->
+      <div class="mb-8">
+        <a href="/projects" class="text-sm text-accent hover:underline">&larr; Back to Projects</a>
+      </div>
+
+      <div class="flex flex-col lg:flex-row lg:gap-10">
+        <!-- Main content (left column) -->
+        <div class="flex-1 min-w-0">
+          <!-- Header -->
+          <header class="mb-10">
+            <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mb-4 ${categoryColor}`}>
+              {p.category}
+            </span>
+
+            <h1 class="text-4xl font-bold mb-4">{p.title}</h1>
+            <p class="text-lg text-muted">{p.description}</p>
+
+            <!-- Tags -->
+            {p.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mt-5">
+                {p.tags.map((tag) => (
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-alt text-muted border border-default">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <!-- External links -->
+            {p.links && p.links.length > 0 && (
+              <div class="flex flex-wrap gap-3 mt-6">
+                {p.links.map((link) => (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:opacity-90 transition-opacity"
+                  >
+                    {link.label}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            )}
+          </header>
+
+          <!-- Markdown body -->
+          <div class="prose prose-lg max-w-none
+            prose-headings:font-bold prose-headings:text-text
+            prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+            prose-code:text-primary prose-code:bg-surface-alt prose-code:px-1 prose-code:rounded
+            prose-pre:bg-surface-alt prose-pre:border prose-pre:border-default
+            dark:prose-invert">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Image sidebar (right column) -->
+        {p.image && (
+          <aside class="lg:w-96 shrink-0 mt-10 lg:mt-0">
+            <div class="lg:sticky lg:top-8">
+              <div class="rounded-xl overflow-hidden border border-default bg-surface-alt">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  class="w-full object-cover"
+                />
+              </div>
+            </div>
+          </aside>
+        )}
+      </div>
+
+    </div>
+  </article>
+</BaseLayout>

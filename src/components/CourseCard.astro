@@ -1,0 +1,49 @@
+---
+interface Props {
+  code: string;
+  title: string;
+  description: string;
+  level: 'Undergraduate' | 'Graduate';
+  href: string;
+  external?: boolean;
+  badgeClass?: string;
+}
+
+const {
+  code,
+  title,
+  description,
+  level,
+  href,
+  external = false,
+  badgeClass = 'bg-primary/10 text-primary'
+} = Astro.props;
+---
+
+<article class="bg-surface rounded-xl border border-default p-6 card-hover group">
+  <div class="flex items-start justify-between mb-4">
+    <span class={`px-3 py-1 rounded-lg text-sm font-medium ${badgeClass}`}>
+      {code}
+    </span>
+    <span class="text-xs text-muted px-2 py-1 bg-surface-alt rounded">
+      {level}
+    </span>
+  </div>
+
+  <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+    {external ? (
+      <a href={href} target="_blank" rel="noopener noreferrer" class="hover:underline">
+        {title}
+        <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    ) : (
+      <a href={href} class="hover:underline">{title}</a>
+    )}
+  </h3>
+
+  <p class="text-sm text-muted leading-relaxed">
+    {description}
+  </p>
+</article>

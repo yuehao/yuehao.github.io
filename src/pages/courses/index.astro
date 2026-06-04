@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseCard from '../../components/CourseCard.astro';
+
+const allCourses = await getCollection('courses');
+allCourses.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+// Group by institution, preserving insertion order
+const byInstitution: Record<string, typeof allCourses> = {};
+for (const entry of allCourses) {
+  const inst = entry.data.institution;
+  if (!byInstitution[inst]) byInstitution[inst] = [];
+  byInstitution[inst].push(entry);
+}
+
+const institutions = Object.keys(byInstitution);
+
+const institutionBadges: Record<string, string> = {
+  'MSU': 'bg-primary/10 text-primary',
+  'USPAS': 'bg-accent/10 text-accent'
+};
+
+const institutionLogos: Record<string, { src: string; alt: string; label: string }> = {
+  'MSU':   { src: '/images/msu-spartan.png',   alt: 'Michigan State University',       label: 'Michigan State University' },
+  'USPAS': { src: '/images/uspas-logo.png',    alt: 'US Particle Accelerator School',  label: 'US Particle Accelerator School' }
+};
+---
+
+<BaseLayout title="Teaching" description="Courses taught by Prof. Yue Hao at MSU and USPAS">
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">Teaching</h1>
+        <p class="text-muted">
+          Courses at Michigan State University and US Particle Accelerator School (USPAS).
+        </p>
+      </div>
+
+      <!-- One section per institution -->
+      {institutions.map((inst) => {
+        const logo = institutionLogos[inst];
+        return (
+          <section class="mb-16">
+            <div class="flex items-center gap-4 border-b border-default pb-2 mb-6">
+              {logo && (
+                <img src={logo.src} alt={logo.alt} class="h-10 w-auto" />
+              )}
+              <h2 class="text-2xl font-medium text-muted">{logo?.label ?? inst}</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {byInstitution[inst].map((entry) => {
+                const d = entry.data;
+                const isExternal = d.external && d.externalUrl;
+                return (
+                  <CourseCard
+                    code={d.code}
+                    title={d.title}
+                    description={d.description}
+                    level={d.level}
+                    href={isExternal ? d.externalUrl! : `/courses/${entry.slug}/`}
+                    external={Boolean(isExternal)}
+                    badgeClass={institutionBadges[inst]}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+
+      <!-- Teaching Philosophy -->
+      <section class="mt-16 bg-surface-alt rounded-2xl p-8">
+        <h2 class="text-xl font-bold mb-4">Teaching Philosophy</h2>
+        <p class="text-muted leading-relaxed">
+          My teaching approach emphasizes the connection between fundamental physics principles
+          and practical accelerator applications. I believe in providing students with both
+          theoretical foundations and hands-on experience with simulation tools and real
+          accelerator systems. The goal is to prepare the next generation of accelerator
+          physicists with the skills needed to advance the field.
+        </p>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

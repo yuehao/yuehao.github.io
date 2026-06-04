@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsItem from '../components/NewsItem.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { parseBibFile, getSelectedPublications } from '../utils/parseBib';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Read and parse the bib file
+const bibPath = path.join(process.cwd(), 'src/data/papers.bib');
+const bibContent = fs.readFileSync(bibPath, 'utf-8');
+const allPublications = parseBibFile(bibContent);
+const selectedPublications = getSelectedPublications(allPublications);
+
+// Sample news data - will be moved to content collection later
+const news = [
+    {
+    date: '2026-05-28',
+    content: "Will's paper on <strong>Optics measurement and control</strong> at RHIC is accepted in <em>NIMA</em>.",
+    link: 'https://www.sciencedirect.com/science/article/abs/pii/S0168900226004249'
+  },
+  {
+    date: '2025-07-31',
+    content: "Our new paper on machine learning based <strong>symplectic space charge</strong> for long term tracking  is published in <em>PRAB</em>.",
+    link: 'https://journals.aps.org/prab/abstract/10.1103/bhpv-bcqk'
+  },
+  {
+    date: '2025-01-09',
+    content: "Jinyu's paper on <strong>JuTrack</strong> development is now available on <em>Computer Physics Communications</em>.",
+    link: 'https://www.sciencedirect.com/science/article/abs/pii/S001046552400420X'
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Text content -->
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+            <span class="text-primary">Beam Physics</span> and
+            <span class="text-accent">Data-driven Methods</span>
+            <span class="block text-2xl md:text-3xl mt-2 text-muted font-medium">in Particle Accelerators</span>
+          </h1>
+          <p class="text-lg text-muted leading-relaxed">
+            <a href="https://frib.msu.edu/" class="text-accent hover:underline">Facility for Rare Isotope Beams</a>,
+            <a href="https://www.msu.edu/" class="text-accent hover:underline">Michigan State University</a>
+          </p>
+          <p class="text-muted leading-relaxed">
+            My research group focuses on in-depth understandings of accelerator physics. 
+            Our goal is to find elegant approaches to achieve a high-intensity and/or 
+            high-quality beam of charged particles in an accelerator.
+          </p>
+          <p class="text-muted leading-relaxed">
+            Such a beam provides a powerful tool in various fields: colliders or fixed-target 
+            accelerators for high energy/nuclear physics research, accelerator-based light 
+            sources for condensed matter physics, biology, and chemistry, as well as medical 
+            or industrial applications.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a
+              href="/projects/"
+              class="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-colors"
+            >
+              View Projects
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a
+              href="/people/"
+              class="inline-flex items-center px-6 py-3 rounded-lg border border-primary text-primary font-medium hover:bg-primary/5 transition-colors"
+            >
+              Meet the Team
+            </a>
+          </div>
+        </div>
+        
+        <!-- Featured image -->
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-surface-alt border border-default shadow-xl">
+            <img
+              src="/images/projects/PRAB_24_041002_FMA_CC.png"
+              alt="Dynamics of Crab Crossing - Frequency Map Analysis"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-surface rounded-lg border border-default p-3 shadow-lg">
+            <p class="text-xs text-muted">Selected Figure from previous study:</p>
+            <a 
+              href="https://journals.aps.org/prab/abstract/10.1103/PhysRevAccelBeams.24.041002"
+              class="text-sm font-medium text-primary hover:underline"
+            >
+              Dynamics of Crab Crossing
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- News Section -->
+  <section class="py-16 bg-surface-alt">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold">News</h2>
+      </div>
+      <div class="bg-surface rounded-xl border border-default p-6">
+        {news.map((item) => (
+          <NewsItem date={item.date} content={item.content} link={item.link} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Selected Publications -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold">Selected Publications</h2>
+      </div>
+      <div class="space-y-4">
+        {selectedPublications.map((pub) => (
+          <PublicationCard {...pub} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <section class="py-16 bg-surface-alt">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Join Our Research Group</h2>
+        <p class="text-white/80 mb-8 max-w-2xl mx-auto">
+          We always welcome new members to our group. If you are interested in our research, 
+          please feel free to contact us.
+        </p>
+        <a
+          href="mailto:haoyue@msu.edu"
+          class="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary font-medium hover:bg-white/90 transition-colors"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

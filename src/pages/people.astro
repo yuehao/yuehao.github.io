@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PersonCard from '../components/PersonCard.astro';
+
+// People data
+const currentMembers = [
+  {
+    name: "Yue Hao",
+    role: "Principal Investigator",
+    image: "/images/people/yuehao.png",
+    email: "haoyue@msu.edu",
+    website: "/people/yuehao/",
+    orcid: "https://orcid.org/0000-0001-8131-7509",
+    scholar: "https://scholar.google.com/citations?user=saiapcwAAAAJ",
+    github: "https://github.com/yuehao",
+    linkedin: "https://www.linkedin.com/in/yuehao@msn.com",
+    isPrincipalInvestigator: true
+  },
+  {
+    name: "William Fung",
+    role: "Ph.D. Candidate",
+    image: "/images/people/fung.png",
+    linkedin: "https://www.linkedin.com/in/william-fung-a02614192/",
+    bio: "Novel methods on beam-based optics measurement, digital twins."
+  },
+  {
+    name: "Ryan Yeung",
+    role: "Ph.D. Candidate",
+    image: "/images/people/yeung.png",
+    linkedin: "https://www.linkedin.com/in/ryan-wai-yen-yeung/",
+    bio: "Advance optimization methods with safety constraints in accelerator operation."
+  },
+  {
+    name: "Helena Alamprese",
+    role: "Ph.D. Candidate",
+    image: "/images/people/alamprese.png",
+    linkedin: "https://www.linkedin.com/in/helena-alamprese-92a147209/",
+    bio: "Space-charge effect in accelerator rings, JuTrack/TrackPad development."
+  },
+  {
+    name: "Christian Ratcliff",
+    role: "Ph.D. Candidate",
+    image: "/images/people/ratcliff.png",
+    linkedin: "https://www.linkedin.com/in/christian-ratcliff-181b164a/",
+    bio: "Auto-differentiable accelerator modeling, JuTrack/TrackPad development."
+  }
+];
+
+const alumni = [
+  {
+    name: "Derong Xu",
+    role: "Physicist at BNL",
+    image: "/images/people/xu.png",
+    bio: "DOE Early Career Awardee",
+    linkedin: "https://www.linkedin.com/in/derong-xu-99baa627a/"
+  },
+  {
+    name: "Jinyu Wan",
+    role: "Physicist at IHEP",
+    image: "/images/people/wan.png",
+    linkedin: "https://www.linkedin.com/in/jinyu-wan-12aa07312/",
+    bio: "Digital Twin Development"
+  },
+  {
+    name: "Michael Balcewicz",
+    role: "Postdoctoral Fellow at FNAL",
+    image: "/images/people/Balcewicz.png",
+    website: "https://inspirehep.net/authors/2569616"
+  },{
+    name: "Kelly Anderson",
+    role: "Postdoctoral Fellow at ORNL",
+    image: "/images/people/anderson.png",
+    linkedin: "https://www.linkedin.com/in/kelly-anderson-039076184/"
+  },
+  {
+    name: "Anthony Tran",
+    role: "Postdoctoral Fellow at ANL",
+    image: "/images/people/tran.png",
+    linkedin: "https://www.linkedin.com/in/anthony-tran-80377419a/",
+  },
+];
+
+const undergrads = [
+  { name: "Joshua Keeney", affiliation: "MSU", program: "2024 Summer ASET Internship", linkedin: "https://www.linkedin.com/in/josh-keeney-89576a258/" },
+  { name: "Kyla Hotton", affiliation: "MSU", program: "2023 Summer ASET Internship", linkedin: "https://www.linkedin.com/in/kyla-hotton-668100221/" },
+  { name: "Jonathan Kho", affiliation: "MSU", program: "2022 Summer ASET Internship", linkedin: "https://www.linkedin.com/in/jonathan-kho-5945361b5/" },
+  { name: "Shane Blade", affiliation: "Clemson U.", program: "REU program 2021", linkedin: "https://www.linkedin.com/in/shane-blade-7a1a6322b/" },
+  { name: "Jack Fenelon", affiliation: "MSU", program: "2021 Summer ASET Internship", linkedin: "https://www.linkedin.com/in/jack-fenelon-44b44b1b4/" },
+  { name: "Julian Olejnik", affiliation: "MSU", program: "2020 Summer ASET Internship", linkedin: "https://www.linkedin.com/in/julian-olejnik-6603a5214/" }
+];
+---
+
+<BaseLayout title="People" description="Meet the team at Hao Group on Beam Physics">
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">People</h1>
+        <p class="text-muted">
+          Meet our research group members, alumni, and collaborators.
+        </p>
+      </div>
+      
+      <!-- Current Members -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-medium text-muted border-b border-default pb-2 mb-6 text-left">Current Members</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          {currentMembers.map((person) => (
+            <PersonCard
+              {...person}
+              variant="vertical"
+              link={person.isPrincipalInvestigator ? undefined : person.linkedin}
+            />
+          ))}
+        </div>
+      </section>
+      
+      <!-- Alumni -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-medium text-muted border-b border-default pb-2 mb-6 text-left">Alumni</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {alumni.map((person) => (
+            <PersonCard 
+              {...person} 
+              link={person.linkedin}
+            />
+          ))}
+        </div>
+      </section>
+      
+      <!-- Undergraduate Researchers -->
+      <section>
+        <h2 class="text-2xl font-medium text-muted border-b border-default pb-2 mb-6 text-left">Undergraduate Researchers and Interns</h2>
+        <div class="bg-surface rounded-xl border border-default overflow-hidden">
+          <table class="w-full">
+            <thead class="bg-surface-alt">
+              <tr>
+                <th class="text-left px-6 py-3 text-sm font-semibold">Name</th>
+                <th class="text-left px-6 py-3 text-sm font-semibold hidden sm:table-cell">Affiliation</th>
+                <th class="text-left px-6 py-3 text-sm font-semibold">Program</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-default">
+              {undergrads.map((person) => (
+                <tr class="hover:bg-surface-alt/50 transition-colors">
+                  <td class="px-6 py-4">
+                    {person.linkedin ? (
+                      <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="font-medium hover:text-primary transition-colors">
+                        {person.name}
+                      </a>
+                    ) : (
+                      <span class="font-medium">{person.name}</span>
+                    )}
+                  </td>
+                  <td class="px-6 py-4 text-muted hidden sm:table-cell">{person.affiliation}</td>
+                  <td class="px-6 py-4 text-sm text-muted">{person.program}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  image?: string;
+  href?: string;
+  tags?: string[];
+}
+
+const { title, description, category, image, href, tags = [] } = Astro.props;
+
+const categoryColors: Record<string, string> = {
+  'Dynamics': 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+  'Computation': 'bg-green-500/10 text-green-600 dark:text-green-400',
+  'Data Driven Modeling': 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
+  'Machine Learning': 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
+  'default': 'bg-gray-500/10 text-gray-600 dark:text-gray-400'
+};
+
+const categoryColor = categoryColors[category] || categoryColors['default'];
+---
+
+<article class="group bg-surface rounded-xl border border-default overflow-hidden card-hover">
+  {image && (
+    <div class="aspect-video overflow-hidden bg-surface-alt">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+  )}
+  
+  <div class="p-5">
+    <!-- Category badge -->
+    <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${categoryColor}`}>
+      {category}
+    </span>
+    
+    <!-- Title -->
+    <h3 class="font-semibold text-lg mt-3 group-hover:text-primary transition-colors">
+      {href ? (
+        <a href={href} class="hover:underline">
+          {title}
+        </a>
+      ) : (
+        title
+      )}
+    </h3>
+    
+    <!-- Description -->
+    <p class="text-sm text-muted mt-2 line-clamp-3">
+      {description}
+    </p>
+    
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 mt-4">
+        {tags.map((tag) => (
+          <span class="px-2 py-0.5 bg-surface-alt rounded text-xs text-muted">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+    
+    <!-- Link arrow -->
+    {href && (
+      <div class="mt-4 flex items-center text-sm text-primary font-medium">
+        <span>Learn more</span>
+        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    )}
+  </div>
+</article>

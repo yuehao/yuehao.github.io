@@ -1,0 +1,80 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { 
+    name: 'Email', 
+    href: 'mailto:haoyue@msu.edu',
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+  },
+  { 
+    name: 'ORCID', 
+    href: 'https://orcid.org/0000-0001-8131-7509',
+    icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c.83 0 1.5.67 1.5 1.5S12.83 8 12 8s-1.5-.67-1.5-1.5S11.17 5 12 5zm3 12h-6v-1h2v-5h-2v-1h4v6h2v1z'
+  },
+  { 
+    name: 'Google Scholar', 
+    href: 'https://scholar.google.com/citations?user=saiapcwAAAAJ',
+    icon: 'M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z'
+  },
+  { 
+    name: 'GitHub', 
+    href: 'https://github.com/yuehao',
+    icon: 'M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z'
+  },
+  { 
+    name: 'LinkedIn', 
+    href: 'https://www.linkedin.com/in/yuehao@msn.com',
+    icon: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'
+  }
+];
+---
+
+<footer class="bg-surface-alt border-t border-default mt-auto">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- About -->
+      <div class="col-span-1 md:col-span-2">
+        <h3 class="font-semibold text-lg mb-4">Beam Physics and Data-driven Methods in Particle Accelerators</h3>
+        <p class="text-muted text-sm mb-4">
+          <a href="https://frib.msu.edu/" class="hover:text-primary transition-colors">Facility for Rare Isotope Beams (FRIB)</a>,<br />
+          <a href="https://www.msu.edu/" class="hover:text-primary transition-colors">Michigan State University</a>
+        </p>
+        <p class="text-muted text-sm">
+          We always welcome new members to our group. If you are interested in our research, please feel free to contact us.
+        </p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-semibold text-lg mb-4">Connect</h3>
+        <div class="flex flex-wrap gap-3">
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-2 rounded-lg text-muted hover:text-primary hover:bg-primary/5 transition-colors"
+              aria-label={link.name}
+              title={link.name}
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d={link.icon} />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom bar -->
+    <div class="mt-8 pt-8 border-t border-default flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-muted">
+        © {currentYear} Yue Hao. Built with <a href="https://astro.build" class="hover:text-primary transition-colors">Astro</a>.
+      </p>
+      <p class="text-sm text-muted">
+        Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+    </div>
+  </div>
+</footer>

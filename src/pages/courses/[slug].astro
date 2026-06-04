@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('courses');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const p = entry.data;
+
+const institutionColors: Record<string, string> = {
+  'MSU': 'bg-primary/10 text-primary',
+  'USPAS': 'bg-accent/10 text-accent',
+  'default': 'bg-gray-500/10 text-gray-600 dark:text-gray-400'
+};
+const institutionColor = institutionColors[p.institution] ?? institutionColors['default'];
+
+// External courses (e.g., UGS 200H) get a single "Visit course site" pill in
+// place of the syllabus / schedule / materials row.
+const inlineLinks: { label: string; href: string }[] = [];
+if (p.syllabus) inlineLinks.push({ label: 'Syllabus', href: p.syllabus });
+if (p.schedule) inlineLinks.push({ label: 'Schedule', href: p.schedule });
+if (p.materials) inlineLinks.push({ label: 'Materials', href: p.materials });
+---
+
+<BaseLayout title={`${p.code}: ${p.title}`} description={p.description}>
+  <article class="py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Back link -->
+      <div class="mb-8">
+        <a href="/courses" class="text-sm text-accent hover:underline">&larr; Back to Teaching</a>
+      </div>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${institutionColor}`}>
+            {p.institution}
+          </span>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-alt text-muted border border-default">
+            {p.code}
+          </span>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-alt text-muted border border-default">
+            {p.level}
+          </span>
+          {p.semester && (
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-alt text-muted border border-default">
+              {p.semester}
+            </span>
+          )}
+        </div>
+
+        <h1 class="text-4xl font-bold mb-4">{p.title}</h1>
+        <p class="text-lg text-muted">{p.description}</p>
+
+        <!-- Inline links: syllabus / schedule / materials (and external for UGS 200H) -->
+        {p.external && p.externalUrl && (
+          <div class="flex flex-wrap gap-3 mt-6">
+            <a
+              href={p.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Visit course site
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+              </svg>
+            </a>
+          </div>
+        )}
+        {inlineLinks.length > 0 && (
+          <div class="flex flex-wrap gap-3 mt-6">
+            {inlineLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                {link.label}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+              </a>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Markdown body -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-text
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+        prose-code:text-primary prose-code:bg-surface-alt prose-code:px-1 prose-code:rounded
+        prose-pre:bg-surface-alt prose-pre:border prose-pre:border-default
+        dark:prose-invert">
+        <Content />
+      </div>
+
+    </div>
+  </article>
+</BaseLayout>
