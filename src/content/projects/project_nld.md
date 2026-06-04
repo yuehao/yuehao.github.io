@@ -4,7 +4,7 @@ description: "Explore nonlinear dynamics properties without tracking. Novel meth
 category: "Dynamics"
 tags: ["Nonlinear Dynamics", "Diffeomorphism", "Storage Rings"]
 status: "active"
-image: "/images/projects/cm_6d.png"
+image: "/images/projects/project_nld.png"
 order: 1
 ---
 
